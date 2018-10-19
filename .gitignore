@@ -2,7 +2,13 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
+#django migrations
 migrations
+
+#vscode config
+.vscode
+
 # C extensions
 *.so
 
