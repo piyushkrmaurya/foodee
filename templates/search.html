@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{%load static%}
+
+{% block content %}
+
+{% if result %}
+      <h2>Top hits</h2>
+      <div id="results">
+            {% for dish in result %}
+            <div class="search_result">
+                  {% include "dish_item.html" %}
+            </div>
+            {% endfor %}
+      </div>
+{% else %}
+      <h2>No dishes found</h2>
+      <p>Try improving your search keywords.</p>
+{% endif %}
+
+{% endblock %}

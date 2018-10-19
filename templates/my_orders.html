@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load orders_tags %}
+{% load static %}
+
+{% block content %}
+
+{% for order_items,order_details in orders %}
+    <h3>{{order_details.order_time}}</h3>
+    {% for item in order_items %}
+    {{item.quantity}} x {{item.dish.name}} = Rs. {{item.dish.price}}<br>
+    {% endfor %}
+    <h5>{% showStatus order_details.status %}</h5>
+    <br>
+{% endfor %}
+
+{% endblock %}

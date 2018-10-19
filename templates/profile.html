@@ -1,0 +1,31 @@
+{% extends "base.html" %} 
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+
+<div  id="profile">
+<div class="profile_pic">
+    <img src='/{{profile.avatar}}' />
+</div>
+    <ul>
+        <li>Name: {{user.first_name}} {{user.last_name}}</li>
+        <li>Email: {{user.email}}</li>
+        <li>Phone: {{profile.phone}}</li>
+        <li>Address: {{profile.address}}{% if not profile.address %}Not Specified{% endif %}</li>
+    </ul>
+</div>
+
+{% if profile.favs.count %}
+      <div id="fav_list">
+            <h2>Your favorites</h2>
+            {% for dish in profile.favs.all %}
+            <div class="fav_item">
+                  {% include "dish_item.html" %}
+            </div>
+            {% endfor %}
+      </div>
+{% else %}
+      <p>You have no dishes in favorites</p>
+{% endif %}
+
+{% endblock %}

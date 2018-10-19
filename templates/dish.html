@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if dish %}
+    <div id="dish_box" class="dish_container">
+        {% include "dish_item.html" %}
+    </div>
+{% else %}
+    {% include "slides.html"}
+{% endif %}
+
+{% endblock %}
+ 

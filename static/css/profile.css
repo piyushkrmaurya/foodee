@@ -1,0 +1,45 @@
+.profile_pic{
+    width: 300px;
+    float: left;
+    margin: 20px;
+    margin-bottom: 50px;
+}
+
+.profile_pic img{
+    width: 100%;
+}
+
+#profile ul{
+    list-style-type: none;
+}
+
+#profile  li{
+    font-size: 20px;
+    line-height: 60px;
+}
+
+@media only screen and (max-width: 800px){
+
+    #profile{
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+
+    .profile_pic {
+        width: 60% !important;
+        height: auto !important;
+        float: none;
+        margin: auto;
+    }
+
+    #profile ul{
+        width: 70% !important;
+        margin: auto;
+    }
+
+    #profile  li{
+        font-size: 18px;
+        line-height: 60px;
+    }
+}
