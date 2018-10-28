@@ -11,8 +11,8 @@
           {% for dish in dishes %}
           <li class="dish_container">
             <a href='/dish/{{dish.name}}'><img src="/{{dish.pic}}" alt="{{dish.name}}"></a>
-            <div style="bottom: 10px;" class='heart {% if dish in profile.favs.all %}fav{% endif %} ' {% if profile %} onclick="toggleFav(this, {{ dish.id }})" {% endif %}></div>
-            <div  style="left: 10px; bottom: 0px;" class='{% if dish in cart %}incart{% else %}cart{% endif %}' {% if profile %} {% if dish not in cart or not cart %}onclick="addToCart(this, {{ dish.id }})"{%endif%} {% endif %}></div>
+            <div style="bottom: 10px;" class='heart {% if dish in favs %}fav{% endif %} ' {% if user.profile %} onclick="toggleFav(this, {{ dish.id }})" {% endif %}></div>
+            <div  style="left: 10px; bottom: 0px;" class='{% if dish in cart %}incart{% else %}cart{% endif %}' {% if user.profile %} {% if dish not in cart or not cart %}onclick="addToCart(this, {{ dish.id }})"{%endif%} {% endif %}></div>
           </li>
           {% endfor %}
       </ul>  

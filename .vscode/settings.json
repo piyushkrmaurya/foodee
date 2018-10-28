@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "/usr/bin/python3"
+    "python.pythonPath": "venv/bin/python",
+    "editor.fontFamily": "'Ubuntu Mono', monospace",
+    "python.linting.enabled": false,
 }

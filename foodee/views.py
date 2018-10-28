@@ -6,23 +6,46 @@ from orders.forms import SignUpForm, UpdateProfileForm
 from datetime import datetime, time, date
 from django.contrib.auth.models import User
 from orders.models import Profile,Dish,Order,OrderItem
+from django.db import connection
+from collections import namedtuple
+
+def namedtuplefetchall(cursor):
+    "Return all rows from a cursor as a namedtuple"
+    nt_result = namedtuple('Result', [col[0] for col in cursor.description])
+    return [nt_result(*row) for row in cursor.fetchall()]
+
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
 
 def home(request):
-    profile = None
-    if not request.user.is_anonymous:
-        profile = request.user.profile
+    cursor = connection.cursor()
     try:
-        if profile:
-            order = Order.objects.filter(profile = request.user.profile).get(status = 0)
-            cart = order.items.all()
+        if request.user.profile:
+            cursor.execute("SELECT `orders_dish`.* FROM `orders_dish`,`orders_profile_favs` WHERE `dish_id` = orders_dish.id AND `profile_id` = "+str(request.user.profile.id))
+            favs = namedtuplefetchall(cursor)
+
+            cursor.execute("SELECT `id` FROM `orders_order` WHERE (`profile_id` = "+ str(request.user.profile.id) +" AND `status` = 0)")
+            order = namedtuplefetchall(cursor)[0]
+
+            cursor.execute("SELECT `orders_dish`.* FROM `orders_dish` INNER JOIN `orders_orderitem` ON (`orders_dish`.`id` = `orders_orderitem`.`dish_id`) WHERE `orders_orderitem`.`order_id` = "+str(order.id))
+            cart = namedtuplefetchall(cursor)
+
         else:
             order = None
             cart = None
-    except Order.DoesNotExist:
+            favs = None
+    except:
         order = None
         cart = None
-    dishes = Dish.objects.all()
-    return render(request, "home.html", {'title':"Home", 'profile':profile, 'cart':cart, 'dishes':dishes})
+        favs = None
+    cursor.execute("SELECT * FROM `orders_dish`")
+    dishes = namedtuplefetchall(cursor)
+    return render(request, "home.html", {'title': "Home", 'cart': cart, 'dishes': dishes, 'favs': favs})
     
 def search(request):
     profile = None
@@ -46,22 +69,23 @@ def search(request):
 
 @login_required
 def profile(request):
-    user = request.user
-    profile = user.profile
-    title = (user.first_name+" "+user.last_name)
+    title = (request.user.first_name+" "+request.user.last_name)
+    cursor = connection.cursor()
+    if request.user.profile:
+        cursor.execute("SELECT `orders_dish`.* FROM `orders_dish`,`orders_profile_favs` WHERE `dish_id` = orders_dish.id AND `profile_id` = "+str(request.user.profile.id))
+        favs = namedtuplefetchall(cursor)
     try:
-        if profile:
-            order = Order.objects.filter(profile = request.user.profile).get(status = 0)
-            cart = order.items.all()
-        else:
-            order = None
-            cart = None
-    except Order.DoesNotExist:
+        cursor.execute("SELECT `id` FROM `orders_order` WHERE (`profile_id` = "+ str(request.user.profile.id) +" AND `status` = 0)")
+        order = namedtuplefetchall(cursor)[0]
+
+        cursor.execute("SELECT `orders_dish`.* FROM `orders_dish` INNER JOIN `orders_orderitem` ON (`orders_dish`.`id` = `orders_orderitem`.`dish_id`) WHERE `orders_orderitem`.`order_id` = "+str(order.id))
+        cart = namedtuplefetchall(cursor)
+    except:
         order = None
         cart = None
     if not title or title==" ":
-        title = user.username
-    return render(request, "profile.html", {'title':title, 'cart': cart, 'profile':profile})
+        title = request.user.username
+    return render(request, "profile.html", {'title': title, 'cart': cart, 'favs': favs})
 
 def signup(request):
     if request.method == 'POST':
@@ -100,11 +124,21 @@ def update_profile(request):
 
 @login_required
 def myOrders(request):
-    profile = request.user.profile
+    cursor = connection.cursor()
     try:
-        orders = Order.objects.filter(profile = request.user.profile).filter(status__gt = 0).all()
-        order_items = [OrderItem.objects.filter(order = order) for order in orders]
-        orders = zip(order_items, orders)
-    except Order.DoesNotExist:
+        cursor.execute("SELECT * from `orders_order` WHERE `profile_id` = "+ str(request.user.profile.id) +" AND `status`>0")
+        orders = namedtuplefetchall(cursor)
+        order_items = []
+
+        for order in orders:
+            cursor.execute("SELECT `orders_dish`.*, `orders_orderitem`.quantity  FROM `orders_dish`, `orders_orderitem`  WHERE `dish_id`=`orders_dish`.id AND `order_id` = "+str(order.id))
+            order_item = namedtuplefetchall(cursor)
+            order_items.append(order_item)
+
+        orders = list(zip(orders, order_items))
+
+    except Exception as e:
+        print(e)
         orders = None
-    return render(request, "my_orders.html", {'title':"My Orders", 'orders': orders, 'profile':profile})
+
+    return render(request, "my_orders.html", {'title': "My Orders", 'orders': orders})

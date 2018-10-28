@@ -10,7 +10,7 @@ def multiply(price, quantity, *args, **kwargs):
 def total(cart, *args, **kwargs):
     value = 0
     for item in cart:
-        value = value + item.dish.price*item.quantity
+        value = value + item.price*item.quantity
     return value
 
 @register.simple_tag()

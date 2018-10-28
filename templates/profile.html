@@ -5,20 +5,20 @@
 
 <div  id="profile">
 <div class="profile_pic">
-    <img src='/{{profile.avatar}}' />
+    <img src='/{{user.profile.avatar}}' />
 </div>
     <ul>
         <li>Name: {{user.first_name}} {{user.last_name}}</li>
         <li>Email: {{user.email}}</li>
-        <li>Phone: {{profile.phone}}</li>
-        <li>Address: {{profile.address}}{% if not profile.address %}Not Specified{% endif %}</li>
+        <li>Phone: {{user.profile.phone}}</li>
+        <li>Address: {{user.profile.address}}{% if not user.profile.address %}Not Specified{% endif %}</li>
     </ul>
 </div>
 
-{% if profile.favs.count %}
+{% if favs %}
       <div id="fav_list">
             <h2>Your favorites</h2>
-            {% for dish in profile.favs.all %}
+            {% for dish in favs %}
             <div class="fav_item">
                   {% include "dish_item.html" %}
             </div>

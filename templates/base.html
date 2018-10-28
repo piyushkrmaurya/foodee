@@ -28,9 +28,9 @@
       <div class="collapse navbar-collapse" id="navb">
         <ul class="navbar-nav mr-auto">
           {% if user.is_authenticated %}
-          {% if profile.avatar %}
+          {% if user.profile.avatar %}
           <li class="nav_item">
-              <img src="/{{profile.avatar}}" style="float: left; border-radius: 100%; width: 50px; height: 50px;" />
+              <img src="/{{user.profile.avatar}}" style="float: left; border-radius: 100%; width: 50px; height: 50px;" />
           </li>
           {% endif %}
           <li class="nav-item">
