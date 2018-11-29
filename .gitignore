@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# I don't know what
+._*
+
 #django migrations
 migrations
 
@@ -108,3 +111,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# vscode
+.vscode/

@@ -1,0 +1,134 @@
+.blog-area{ padding: 280px 0 70px; }
+
+.blog-posts .single-post{ margin-bottom: 60px; }
+
+.single-post .icons{ overflow: hidden; line-height: 30px; margin: 30px 0 10px; }
+
+.single-post .icons .caegory-btn{ padding: 0 20px; height: 30px; line-height: 30px; }
+
+.single-post .icons ul.social-icons{ color: #666; }
+
+.single-post .icons ul.social-icons > li > a{ padding-left: 15px; }
+
+.single-post .icons ul.social-icons > li > a > i{ margin-right: 10px; }
+
+.single-post .title{ margin: 20px 0 15px; }
+
+.single-post .date{ color: #999; }
+
+.single-post .read-more-btn{ clear: both; margin-top: 30px; box-shadow: 1px 10px 15px rgba(0,0,0, .15); 
+	border: 1px solid #FFAD4D; background: #fff; color: #FFAD4D; }
+
+.single-post .read-more-btn:hover{ box-shadow: 1px 3px 15px rgba(0,0,0, .15); background: #FFAD4D; color: #fff; }
+	
+	
+/* POST STYLE TWO */
+
+.post-style-2 .image-wrapper{ padding-right: 30px; }
+
+.post-style-2 .post-details .icons{ margin-top: 0; }
+
+.post-style-2 .post-details .icons .caegory-btn{ margin: 0; }
+
+
+/* LOAD MORE BUTTON */
+
+.blog-posts .load-more-btn{ clear: both; margin: 70px 0 30px; }
+
+
+/* ---------------------------------
+6. SIDEBAR STYLING
+--------------------------------- */
+
+.sidebar-section{ margin-bottom: 50px; }
+
+.sidebar-section .title{ margin-bottom: 30px; }
+
+.sidebar-area img{ max-width: 600px; }
+
+
+/* ABOUT AUTHOR */
+
+.about-author{ margin-top: 30px; padding: 0 30px 30px; box-shadow: 0px 10px 40px rgba(0,0,0,.2); }
+
+.about-author .author-image{ max-width: 150px; margin: 0px auto 20px; transform: translateY(-30px); 
+	border-radius: 3px; overflow: hidden; box-shadow: 0px 0px 30px rgba(0,0,0,.1); }
+
+.about-author .social-icons > li{ margin: 0 10px; color: #888; font-size: 1.05em; }
+
+.about-author .author-name{ margin: 20px 0; }
+
+.about-author .signature-image{ margin: 20px auto 0; max-width: 120px; }
+
+.about-author .read-more-link{ margin: 20px 0; font-size: .9em; letter-spacing: 2px; position: relative; 
+	overflow: hidden; color: #FFAD4D; }
+
+.about-author .read-more-link:after{ content:''; position: absolute; bottom: 0px; left: 0; right: 0; 
+	height: 1px; transition: all .2s; background: #FFAD4D; }
+
+.about-author .read-more-link:hover:after{ transform: translateX(100%); }
+
+
+/* SEARCH AREA */
+
+.src-area{ line-height: 50px; position: relative;  }
+
+.src-area input{ display: block; width: 100%; padding: 0 50px 0 20px; border: 0; outline: 0; 
+	border-bottom: 1px solid #bbb;  }
+
+.src-area .src-btn{ position: absolute; top: 0; right: 20px; height: 50px; }
+
+	
+/* NEWSLETTER AREA */
+
+.newsletter-area{ padding: 30px; background :#29333C; }
+
+.newsletter-area .title{ margin: 0; color: #fff; }
+
+.newsletter-area .email-input{ width: 100%; margin: 15px 0; border: 0; padding: 10px 20px; background: #fff; }
+
+
+/* CATEGORY AREA */
+
+.category-area .category{ position: relative; margin-bottom: 20px; }
+
+.category .name{ position: absolute; bottom: 0; left: 0; right: 0; padding: 7px 20px; background: #FFAD4D; color: #fff; }
+
+
+/* LATEST POSTS */
+
+.latest-post{ overflow: hidden; margin-bottom: 20px; }
+
+.latest-post .l-post-image{ width: 80px; float: left; }
+
+.latest-post .post-info{ margin-left: 100px; }
+
+.latest-post .category-btn{ padding: 5px 10px; margin-bottom: 5px; }
+
+.latest-post .date{ margin-top: 5px; color: #888; }
+	
+
+/* ADVERTISEMENT AREA */
+
+.advertisement-img{ position: relative; }
+
+.advertisement-img .discover-btn{ position: absolute; bottom: 30px; padding: 15px 0; width: 200px; 
+	left: 50%; margin-left: -100px; border-color: #fff; color: #fff; }
+
+.advertisement-img .discover-btn:hover{ border-color: #FFAD4D; }
+
+
+/* INSTAGRAM */
+	
+.instagram-area{ overflow: hidden; }
+
+.instagram-area .instagram-img > li{ width: 30%; float: left; margin: 0 5px 5px 0; }
+
+	
+/* TAGS */
+
+.tags-area .tags{ overflow: hidden; }
+
+.tags-area .tags > li{ float: left; margin: 0 5px 5px 0; }
+
+.tags-area .tags > li > a{ padding: 10px 15px; }

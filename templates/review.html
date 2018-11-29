@@ -1,0 +1,64 @@
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+<style>
+	.star{
+		height: 50px;
+		width: 50px;
+		font-size: 30px;
+		border-radius: 100%;
+		margin: 5px;
+		float: left;
+	}
+	.bright{
+		color: #ffc30f;
+	}
+	.dark{
+		color: #aaa;
+	}
+</style>
+
+<h5 class="title">Overall User Ratings: <b class="light-color">{{ stars }}</b></a></h5>
+
+<h5 style="display:inline; float:left; line-height: 50px">Your Rating:</h5>
+{% for i in bright %}
+
+	<button id="bright{{forloop.counter}}" class="fa fa-star star bright"></button> 
+
+{% endfor %}
+
+{% for i in dark %}
+
+	<button id="dark{{forloop.counter}}" class="fa fa-star star dark"></button> 
+
+{% endfor %}
+
+<script>
+	bright = $('.bright').length;
+	dark = 5-bright;
+
+	$('#stars .star').on('click', function(e){
+
+		div = $(e.target);
+		star_id = $('.star').index(div)+1;
+
+		for(var i=0; i<5; i++){
+			if(i<star_id){
+				$('.star').eq(i).removeClass('dark');
+				$('.star').eq(i).addClass('bright');
+			}
+			else{
+				$('.star').eq(i).addClass('dark');
+				$('.star').eq(i).removeClass('bright');
+			}
+		}
+        
+		$.ajax({
+	        url: "/change_stars/{{dish.id}}",
+	        data: {stars: star_id}, 
+	        type: 'GET',
+	        contentType: 'application/json; charset=utf-8',
+	     });
+
+	})
+
+
+</script>

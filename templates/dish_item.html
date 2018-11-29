@@ -1,11 +1,25 @@
+{% load orders_tags %}
 {% if dish %}
-<div class="dish_item">
-        <a href='/dish/{{dish.id}}'><img src="/{{dish.pic}}" alt="{{dish.name}}"></a>
-        <br/><br/>
-        <div class='heart {% if dish in favs %}fav{% endif %} ' {% if user.profile %} onclick="toggleFav(this, {{ dish.id }})" {% endif %}></div>
-        <div class='{% if dish in cart %}incart{% else %}cart{% endif %}' {% if user.profile %} {% if dish not in cart or not cart %}onclick="addToCart(this, {{ dish.id }})"{%endif%} {% endif %}></div>
-        <h2>{{ dish.name }}</h2>
-        {{ dish.description }}
-        <br/>Rs. {{dish.price }}
+<div class="single-post row">
+        <div class="image-wrapper col-lg-6">
+                <a href='/dish/{{dish.id}}'><img src="/{{dish.pic}}" alt="{{dish.name}}"></a>
+                <div class="{% get_veg_non_veg dish %}" ></div>
+                <button class='heart {% if dish in favs %}fav{% endif %}' title='{% if dish in favs %}Remove from favorites{% else %}Add to favorites{% endif %}' {% if user.profile %} onclick="toggleFav(this, {{ dish.id }})" {% endif %}></button>
+                <button class='{% if dish in cart %}incart{% else %}cart{% endif %}' title='{% if dish not in cart %}Add to cart{% endif %}' {% if user.profile %} {% if dish not in cart or not cart %}onclick="addToCart(this, {{ dish.id }})"{%endif%} {% endif %}></button>
+        </div>
+
+        <div class="col-lg-6">
+                <div class="icons">
+                        <div class="left-area">
+                        {% for tag in top_post.tags.all %}
+                        <a class="btn caegory-btn" href="/search?keyword={{tag.name}}"><b>{{tag}}</b></a>
+                        {% endfor %}
+                        </div>
+                </div>
+                <h3 class="title"><a href="#"><b class="light-color">{{ dish.name }}</b></a></h3>
+                <p class='post_content'>{{ dish.description }}</p>
+                <h4 class="date">Only for &#8377;{{dish.price }}</em></h4>
+                
+        </div>
 </div>
 {% endif %}

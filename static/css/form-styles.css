@@ -1,0 +1,108 @@
+
+/*
+====================================================
+
+* 	[Master Stylesheet]
+	
+	Theme Name :  
+	Version    :  
+	Author     :  
+	Author URI :  
+
+====================================================
+
+	TOC
+	
+	
+	4. SINGLE POST
+		LEAVE COMMENT
+	5. SIDEBAR STYLING
+		ABOUT AUTHOR
+		NEWSLETTER AREA
+		ADVERTISEMENT AREA
+
+
+====================================================
+
+ 
+/* ---------------------------------
+4. SINGLE POST
+--------------------------------- */
+
+.blog-area{ padding: 280px 0 70px; }
+
+.blog-posts .single-post{ margin-bottom: 60px; }
+
+.single-post .title{ margin: 50px 0 0; }
+
+.single-post .desc{ margin: 20px 0; }
+	
+	
+/* LEAVE COMMENT */
+
+.leave-comment-area{ margin: 50px 0; }
+
+.leave-comment-area .title{ margin-bottom: 30px; }
+
+.leave-comment input,
+.leave-comment textarea{ width: 100%; margin-bottom: 30px; border: 0; outline: 0; border-bottom: 1px solid #aaa; }
+
+.leave-comment input{ padding: 10px 0px; }
+
+.leave-comment textarea{ padding: 10px 0px; }
+
+
+/* ---------------------------------
+5. SIDEBAR STYLING
+--------------------------------- */
+
+.sidebar-section{ margin-bottom: 50px; }
+
+.sidebar-section .title{ margin-bottom: 30px; }
+
+.sidebar-area img{ max-width: 600px; }
+
+
+/* ABOUT AUTHOR */
+
+.about-author{ margin-top: 30px; padding: 0 30px 30px; box-shadow: 0px 10px 40px rgba(0,0,0,.2); }
+
+.about-author .author-image{ max-width: 150px; margin: 0px auto 20px; transform: translateY(-30px); 
+	border-radius: 3px; overflow: hidden; box-shadow: 0px 0px 30px rgba(0,0,0,.1); }
+
+.about-author .social-icons > li{ margin: 0 10px; color: #888; font-size: 1.05em; }
+
+.about-author .author-name{ margin: 20px 0; }
+
+.about-author .signature-image{ margin: 20px auto 0; max-width: 120px; }
+
+.about-author .read-more-link{ margin: 20px 0; font-size: .9em; letter-spacing: 2px; position: relative; 
+	overflow: hidden; color: #FFAD4D; }
+
+.about-author .read-more-link:after{ content:''; position: absolute; bottom: 0px; left: 0; right: 0; 
+	height: 1px; transition: all .2s; background: #FFAD4D; }
+
+.about-author .read-more-link:hover:after{ transform: translateX(100%); }
+
+	
+/* NEWSLETTER AREA */
+
+.newsletter-area{ padding: 30px; background :#29333C; }
+
+.newsletter-area .title{ margin: 0; color: #fff; }
+
+.newsletter-area .email-input{ width: 100%; margin: 15px 0; border: 0; padding: 10px 20px; background: #fff; }
+
+
+/* ADVERTISEMENT AREA */
+
+.advertisement-img{ position: relative; }
+
+.advertisement-img .discover-btn{ position: absolute; bottom: 30px; padding: 15px 0; width: 200px; 
+	left: 50%; margin-left: -100px; border-color: #fff; color: #fff; }
+
+.advertisement-img .discover-btn:hover{ border-color: #FFAD4D; }
+
+
+
+

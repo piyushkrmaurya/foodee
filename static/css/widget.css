@@ -1,0 +1,130 @@
+.heart, .cart, .incart, .veg, .non-veg{
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100%;
+    display: inline-block;
+    margin: 0 10px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 999;
+}
+
+.veg, .non-veg{
+    background-size: 30px 30px;
+    padding-left: 40px;
+    top: 10px;
+    left: 10px;
+    text-transform: uppercase;
+    font-family: 'Roboto Slab';
+    font-size: 20px;
+    width: auto;
+    color: white;
+    height: 30px;
+}
+
+.veg{
+    background-image: url('../icons/green_dot.jpg');
+}
+
+.non-veg{
+    background-image: url('../icons/red_dot.jpg');
+}
+
+.heart{
+    width: 70px;
+    height: 70px;
+    bottom: 10px;
+    right: 30px;
+    background-image: url('../icons/heart.png');
+}
+
+.fav, .heart:hover{
+    background-image: url('../icons/fav.png');
+}
+
+.fav:hover{
+    background-image: url('../icons/heart.png');
+}
+
+.cart, .incart{
+    width: 70px;
+    height: 70px;
+    bottom: 0px;
+    left: 20px;
+}
+
+.cart{
+    background-image: url('../icons/cart.png');
+}
+
+.cart:hover, .incart{
+    background-image: url('../icons/incart.png');
+}
+
+.heart, .cart, .fav, .incart{
+    outline: none;
+    border: none;
+}
+
+.heart:active, .cart:active, .fav:active, .incart:active{
+    outline: none;
+    border: none;
+}
+    
+.heart:focus, .cart:focus, .fav:focus, .incart:focus{
+    outline:0;
+}
+
+
+.dish_container{
+    position:relative; top:0; left:0;
+}
+
+.dish_container img{
+    width: 100%;
+    height: 100%;
+}
+
+
+#results{
+    margin: 20px auto;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+#fav_list{
+    box-sizing: border-box;
+    width: auto !important;
+    clear: both;
+}
+
+.fav_item, .search_result{
+    box-sizing: border-box;
+    margin: 30px auto;
+    display: inline-block;
+    float: none;
+    clear: both;
+}
+
+.fav_item{
+    width: 350px !important;
+}
+
+.dish_item{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: auto;
+}
+
+.dish_item img{
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+    .search_result{
+        width: 100%;
+    }
+}
+

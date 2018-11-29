@@ -22,10 +22,12 @@ $.ajaxSetup({
                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             }
         }
-    }
+    },
+    asnyc: false
 });
 
 
+//ajax call to toggle favourite dishes
 function toggleFav(div, dish_id){
     $.ajax({
             type: "POST",
@@ -35,6 +37,7 @@ function toggleFav(div, dish_id){
     });
 }
 
+//ajax call to add a dish to cart
 function addToCart(div, dish_id){
     $.ajax({
             type: "POST",
@@ -45,6 +48,7 @@ function addToCart(div, dish_id){
     });
 }
 
+//ajax call to remove a dish to cart
 function removeFromCart(div, dish_id){
     $.ajax({
             type: "POST",
@@ -57,6 +61,7 @@ function removeFromCart(div, dish_id){
     });
 }
 
+// ajax call to change the dish quantity in cart
 function changeQuantity(dish_id, div){
     $.ajax({
             type: "POST",
@@ -66,6 +71,8 @@ function changeQuantity(dish_id, div){
     });
 }
 
+
+// ajax call for order confirmation
 function orderNow(){
     $.ajax({
             type: "POST",

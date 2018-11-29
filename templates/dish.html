@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
 
-{% if dish %}
-    <div id="dish_box" class="dish_container">
+<div class="col-lg-12">
+    <div class="blog-posts">
         {% include "dish_item.html" %}
     </div>
-{% else %}
-    {% include "slides.html"}
-{% endif %}
-
+</div>
+<div id="stars">
+    {% include "review.html" %}
+</div>
 {% endblock %}
  

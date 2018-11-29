@@ -54,8 +54,8 @@
         width: 80%;
     }
 </style>
-
-    <h1>Cart</h1>
+    <h2 style="text-align: center; color: #555;">CART</h2>
+    <br>
     <div class="container">
     {% for item in cart %}
     <div class="row item">
@@ -66,14 +66,19 @@
         <h3>{{ item.name }}</h3>
         <h4>&#8377;{{item.price}} x {{ item.quantity }} =  &#8377;{% multiply item.price item.quantity %}</h4>
         <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="10" onchange="changeQuantity({{item.id}}, this);">
-        
+
         <input type="button" class="remove" value="Remove" onclick="removeFromCart(this, {{item.id}});" >
         </div>
     </div>
     {% endfor %}
-    <div class="row"><div class="col"><h3>Grand Total :  &#8377;{% total cart %}</h3></div></div>
+    {% if profile.premium %}
+        <h5>Only for premium users, 10% discount upto &#8377;100</h5>
+        <div class="row"><div class="col"><h3>Grand Total :  &#8377;{% total_for_premium cart %}</h3></div></div>
+    {% else %}
+        <div class="row"><div class="col"><h3>Grand Total :  &#8377;{% total cart %}</h3></div></div>
+    {% endif %}
     <div class="row" ><div class="col" style="text-align: center">
-            <input class="btn btn-success" type="button" value="Place Order" onclick = "orderNow();">
+            <input class="btn" type="button" value="Place Order" onclick = "orderNow();">
     </div></div>
     </div>
 {% endif %}

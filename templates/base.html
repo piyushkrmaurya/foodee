@@ -1,80 +1,152 @@
 {% load static %}
-
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+	<title>{{title}}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="{% static 'icons/fav.png' %}" type="image/x-icon" />
+	<meta charset="UTF-8">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <script src="{% static 'js/base.js' %}"></script>
 
-    <title>{% block title %} {{title}} | Foodee{% endblock %}</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success" style="margin-bottom:24px;">
-      <a class="navbar-brand" href="{% url 'home' %}">Foodee</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+	<!-- Font -->
 
-      <div class="collapse navbar-collapse" id="navb">
-        <ul class="navbar-nav mr-auto">
-          {% if user.is_authenticated %}
-          {% if user.profile.avatar %}
-          <li class="nav_item">
-              <img src="/{{user.profile.avatar}}" style="float: left; border-radius: 100%; width: 50px; height: 50px;" />
-          </li>
-          {% endif %}
-          <li class="nav-item">
-              <div class="dropdown">
-                  <div class="dropbtn"><a class="nav-link" href="#">
-                    {% if user.first_name %}
-                      {{user.first_name}}
-                    {% else %}
-                      {{ user.username }}
-                    {% endif %}
-                  </a></div>
-                  <div class="dropdown-content">
-                    <a href="/profile">Profile</a>
-                    <a href="/my_orders">My Orders</a>
-                    <a href="/accounts/logout/?next={{request.path}}">Logout</a>
-                  </div>
-                </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/cart">Cart</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="/accounts/login/">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/signup/">Signup</a>
-          </li>
-          {% endif %}
-        </ul>
-        <form action="/search" class="form-inline my-2 my-lg-0 text-align-center">
-          <input class="form-control mr-sm-2" name="keyword" placeholder="Search" type="text">
-          <input type="submit" class="btn btn-danger my-2 my-sm-0" value="Search" />
-        </form>
-      </div>
-    </nav>
-    
-    <div id="content" class="container">
-      {% block content %}{% endblock %}
-    </div>
-    <div id="footer"></div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+	<!-- Stylesheets -->
+
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+	<link href="{% static 'css/base.css' %}" rel="stylesheet">
+	<link href="{% static 'css/widget.css' %}" rel="stylesheet">
+	<link href="{% static 'css/home-styles.css' %}" rel="stylesheet">
+	<link href="{% static 'css/home-responsive.css' %}" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+	<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+
+</head>
+<body>
+
+	<header style="position: absolute; top: 0;">
+		<div class="middle-menu center-text"><a href="#" class="logo"><img src="{% static 'images/logo.png' %}" alt="Logo Image"></a></div>
+
+		<div class="bottom-area" style="position: sticky; position: -webkit-sticky; top:0;">
+
+			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="fa fa-bars"></i></div>
+
+			<ul class="main-menu visible-on-click" id="main-menu" style="background-color:white;">
+				
+				<li><a href="/"><i class="fas fa-home"></i> HOME</a></li>
+				{% if user.is_authenticated %}
+				<li><a href="/cart"><i class="fas fa-shopping-cart"></i> CART</a></li>
+					<li class="drop-down">
+						<a href="#!">
+							<img src="/{{user.profile.avatar}}" style="border-radius: 100%; width: 40px; height: 40px;" />
+							<i class="fa fa-arrow-down"></i>
+						</a>
+						<ul class="drop-down-menu">
+							<li><a href="/profile">
+								{% if user.first_name %}
+								{{user.first_name}}
+								{% else %}
+								{{ user.username }}
+								{% endif %}
+							</a></li>
+							{% if user.is_staff %}
+							<li><a href="/admin">Admin Panel</a></li>
+							<li><a href="/sql">SQL Query</a></li>
+							{% endif %}
+							<li><a href="/my_orders">My Orders</a></li>
+							<li><a href="/accounts/logout/?next={{request.path}}">Logout</a></li>
+						</ul>
+					</li>
+					{% else %}
+					<li><a href="/accounts/login/">Login</a></li>
+					<li><a class="nav-link" href="/signup/">Signup</a></li>
+				{% endif %}
+				<li><a href="/blog/feed" style="font-size:30px"><i class="fas fa-rss"></i></a></li>
+				<li>
+					<div class="src-area">
+						<form action="/search" method="get">
+							<input class="src-input" type="text" name="keyword" placeholder="Search">
+							<button class="src-btn" type="submit"><i class="fa fa-search-strong"></i></button>
+						</form>
+					</div>
+				</li>
+			</ul><!-- main-menu -->
+
+		</div>
+
+	</header>
+
+	
+
+	<section class="section blog-area">
+		<div class="container">
+			<div class="row">
+
+				{% block content %}
+
+				{% endblock %}
+
+			</div>
+		</div>
+	</section>
+
+	<section class="footer-instagram-area">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h5 class="title"><b class="light-color">Like us on facebook <li class='fab fa-facebook'></li></li></b></h5>
+				</div><!-- col-lg-4 -->
+			</div><!-- row -->
+		</div><!-- container -->
+
+		<ul class="instagram">
+			{% for dish in dishes %}
+			<li><a href="#"><img src="/{{dish.pic}}" alt="{{dish.name}}"></a></li>
+			{% endfor %}
+		</ul>
+	</section><!-- section -->
+
+
+	<footer>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-6">
+					<div class="footer-section">
+						<p class="copyright">Foodee &copy; 2018</p>
+					</div><!-- footer-section -->
+				</div><!-- col-lg-4 col-md-6 -->
+
+				<div class="col-sm-6">
+					<div class="footer-section">
+						<ul class="social-icons">
+							<li><a href="#"><i class="fab fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+						</ul>
+					</div><!-- footer-section -->
+				</div><!-- col-lg-4 col-md-6 -->
+
+			</div><!-- row -->
+		</div><!-- container -->
+	</footer>
+
+
+	<!-- SCIPTS -->
+
+	<script src="{% static 'js/base.js' %}"></script>
+
+	<script src="{% static 'js/tether.min.js' %}"></script>
+
+	<script src="{% static 'js/bootstrap.js' %}"></script>
+
+	<script src="{% static 'js/scripts.js' %}"></script>
+
+</body>
 </html>

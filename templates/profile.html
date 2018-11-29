@@ -1,31 +1,53 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
 
-<div  id="profile">
-<div class="profile_pic">
-    <img src='/{{user.profile.avatar}}' />
-</div>
-    <ul>
-        <li>Name: {{user.first_name}} {{user.last_name}}</li>
-        <li>Email: {{user.email}}</li>
-        <li>Phone: {{user.profile.phone}}</li>
-        <li>Address: {{user.profile.address}}{% if not user.profile.address %}Not Specified{% endif %}</li>
-    </ul>
-</div>
+<link href="{% static 'css/home-styles.css' %}" rel="stylesheet">
 
-{% if favs %}
-      <div id="fav_list">
-            <h2>Your favorites</h2>
-            {% for dish in favs %}
-            <div class="fav_item">
-                  {% include "dish_item.html" %}
+<link href="{% static 'css/home-responsive.css' %}" rel="stylesheet">
+
+
+<div class="col-lg-12">
+    <div class="blog-posts container">
+
+        <div  id="profile" class='row'>
+            <div class="profile_pic col-lg-4">
+                <img src='/{{user.profile.avatar}}' />
             </div>
-            {% endfor %}
-      </div>
-{% else %}
-      <p>You have no dishes in favorites</p>
-{% endif %}
+            <div class="col-lg-4">
+                    <ul>
+                        <li>Name: {{user.first_name}} {{user.last_name}}</li>
+                        <li>Email: {{user.email}}</li>
+                        <li>Phone: {{user.profile.phone}}</li>
+                        {% if user.profile.premium == True %}
+                        <li>PREMIUM CUSTOMER</li>
+                        {% endif %}
+                        <li>Address: {{user.profile.address}}{% if not user.profile.address %}Not Specified{% endif %}</li>
+                    </ul>
+            </div>
+        </div>
+
+        {% if favs %}
+        <div class='container'>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Your favorites</h2>
+                </div>
+            </div>
+            <div id="fav_list" class="row">
+                    {% for dish in favs %}
+                    <div class="fav_item col-lg-5">
+                        {% include "dish_item.html" %}
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+        {% else %}
+            <p>You have no dishes in favorites</p>
+        {% endif %}
+
+    </div>
+</div>
 
 {% endblock %}

@@ -1,0 +1,103 @@
+{% extends "base.html" %} 
+
+{% load static %}
+
+{% block content %}
+
+
+<link href="{% static 'css/post-styles.css' %}" rel="stylesheet">
+<link href="{% static 'css/post-responsive.css' %}" rel="stylesheet">
+
+
+
+<div class="col-lg-8 col-md-12">
+        <div class="blog-posts">
+
+            <div class="single-post">
+                <div class="image-wrapper"><img src="/{{post.image}}" alt="{{top_post.heading}}"></div>
+
+                <div class="icons">
+                    <div class="left-area">
+                        {% for tag in post.tags.all %}
+                            <a class="btn caegory-btn" href="#"><b>{{tag}}</b></a>
+                        {% endfor %}
+                    </div>
+                   
+                </div>
+                <p class="date"><em>{{post.date_added}}</em></p>
+                <h3 class="title"><a href="#"><b class="light-color">{{post.heading}}</b></a></h3>
+                
+                <h5 class="quoto"><em><i class="ion-quote"></i>{{post.quoted_text}}
+                </em></h5>
+
+                <p class="desc" style="text-align: justify;">{{post.content}}</p>
+
+            </div><!-- single-post -->
+
+
+            <div class="post-author">
+                <!-- <div class="author-image"><img src="images/author-1-200x200.jpg" alt="Autohr Image"></div> -->
+
+                <div class="author-info">
+                    <h4 class="name"><b class="light-color">{{post.chef_name}}</b></h4>
+
+                    <p>{{post.chef_details}}</p>
+
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
+                        <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+                        <li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
+                        <li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <!-- post-author -->
+
+            <div class="comments-area">
+                <h4 class="title"><b class="light-color">{{post.comments.all.count}} Comment{% if not post.comments.all.count == 1 %}s{% endif %}</b></h4>
+                {% for comment in post.comments.all %}
+                <div class="comment">
+                    <div class="author-image"><img src="/{{comment.user.profile.avatar}}" alt="{{comment.user.profile}}"></div>
+                    <div class="comment-info">
+                        <h4><b class="light-color">{{comment.user.profile}}</b></h4>
+                        <h5 class="date"><em>{{comment.date_added}}</em></h6>
+                        <h5>{{comment.subject}}</h5>
+                        <p>{{comment.message}}</p>
+                    </div>
+                </div><!-- comment -->
+                {% endfor %}
+            </div><!-- comments-area -->
+
+            <div class="leave-comment-area">
+                <h4 class="title"><b class="light-color">Leave a comment</b></h4>
+                <div class="leave-comment">
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <input class="subject-input" name="subject" type="text" placeholder="Subject">
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea class="message-input" name="message" rows="6" placeholder="Message"></textarea>
+                            </div>
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-2"><b>COMMENT</b></button>
+                            </div>
+
+                        </div><!-- row -->
+                    </form>
+
+                </div><!-- leave-comment -->
+
+            </div><!-- comments-area -->
+
+        </div><!-- blog-posts -->
+</div><!-- col-lg-4 -->
+
+
+{% include "sidebar.html" %}
+
+{% endblock %}

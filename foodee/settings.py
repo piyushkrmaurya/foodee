@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'orders',
+    'blog'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'foodee.middleware.usertracking.checkLocationMiddleware',
+    'foodee.middleware.usertracking.checkBadURLMiddleware',    
 ]
 
 ROOT_URLCONF = 'foodee.urls'
@@ -78,7 +81,6 @@ PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        #'NAME': os.path.join(PROJECT_DIR, 'foodee.db'),
         'NAME': 'foodee',
         'USER': 'django',
         'PASSWORD': 'django-pass',
@@ -136,3 +138,5 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+GEOIP_PATH = os.path.join(BASE_DIR, 'GeoLite')

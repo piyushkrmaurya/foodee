@@ -1,5 +1,0 @@
-{
-    "python.pythonPath": "venv/bin/python",
-    "editor.fontFamily": "'Ubuntu Mono', monospace",
-    "python.linting.enabled": false,
-}

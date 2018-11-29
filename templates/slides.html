@@ -1,26 +1,67 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/slides.css' %}" />
-<script src="{% static 'js/slides.js' %}"></script>
+{% load orders_tags %}
 
+<link rel="stylesheet" href="{% static 'plugins/owl-carousel/owl.carousel.min.css' %}" />
+<link rel="stylesheet" href="{% static 'plugins/owl-carousel/owl.theme.default.min.css' %}" />
+
+<style>
+.owl-theme{
+  overflow: hidden;
+}
+.dish_img{
+  width: 260px;
+  object-fit: fill;
+}
+
+.slide-nav{
+  color: #777;
+  font-size: 25px;
+  padding: 10px;
+}
+
+.slide-nav:hover{
+  color: #eee;
+}
+
+#slide{
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.4);
+}
+
+</style>
     {% if dishes %}
-    <h1>Top Dishes</h1>
-    <div id="slider">
-      <a href="#" class="control_next">></a>
-      <a href="#" class="control_prev"><</a>
-      <ul>
-          {% for dish in dishes %}
-          <li class="dish_container">
-            <a href='/dish/{{dish.name}}'><img src="/{{dish.pic}}" alt="{{dish.name}}"></a>
-            <div style="bottom: 10px;" class='heart {% if dish in favs %}fav{% endif %} ' {% if user.profile %} onclick="toggleFav(this, {{ dish.id }})" {% endif %}></div>
-            <div  style="left: 10px; bottom: 0px;" class='{% if dish in cart %}incart{% else %}cart{% endif %}' {% if user.profile %} {% if dish not in cart or not cart %}onclick="addToCart(this, {{ dish.id }})"{%endif%} {% endif %}></div>
-          </li>
-          {% endfor %}
-      </ul>  
-    </div>
-    
-    {% comment %} <div class="slider_option">
-      <input type="checkbox" id="checkbox">
-      <label for="checkbox">Autoplay Slider</label>
-    </div>  {% endcomment %}
+    <div class="owl-carousel owl-theme" id="slide">
+        {% for dish in dishes %}
+        <div>
+          <a href='/dish/{{dish.name}}'><img class='dish_img' src="/{{dish.pic}}" alt="{{dish.name}}"></a>
+          <div class="{% get_veg_non_veg dish %}">{{dish.name}}</div>
+          <button class='heart {% if dish in favs %}fav{% endif %}' title='{% if dish in favs %}Remove from favorites{% else %}Add to favorites{% endif %}' {% if user.profile %} onclick="toggleFav(this, {{ dish.id }})" {% endif %}></button>
+          <button class='{% if dish in cart %}incart{% else %}cart{% endif %}' title='{% if dish not in cart %}Add to cart{% endif %}' {% if user.profile %} {% if dish not in cart or not cart %}onclick="addToCart(this, {{ dish.id }})"{%endif%} {% endif %}></button>
+        </div>
+        {% endfor %}
+    </div>  
+    <script>
+      $(document).ready(function(){
+        $('.owl-carousel').owlCarousel({
+          autoplay: true,
+          autoplayHoverPause: true,
+          loop: true,
+          center: true,
+          dots: true,
+          nav: true,
+          items : 1,
+          navText : ["<i class='slide-nav fa fa-arrow-left'></i>","<i class='slide-nav fa fa-arrow-right'></i>"],
+          responsive : {
+                480 : { items : 1  }, // from zero to 480 screen width 4 items
+                768 : { items : 1  }, // from 480 screen widthto 768 6 items
+                1024 : { items : 1 }  // from 768 screen width to 1024 8 items
+            },
+        });
+      });
+    </script>
     {% endif %}
+
+<script src="{% static 'plugins/owl-carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'plugins/owl-carousel/owl.autoplay.js' %}" data-cover=""></script>
+<script src="{% static 'plugins/owl-carousel/owl.support.js' %}" data-cover=""></script>
     

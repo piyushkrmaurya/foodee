@@ -1,0 +1,70 @@
+.blog-area{ padding: 370px 0 50px; }
+
+.blog-posts .single-post{ margin-bottom: 60px; }
+
+.single-post .icons{ overflow: hidden; line-height: 30px; margin: 30px 0 10px; }
+
+.single-post .icons .caegory-btn{ padding: 0 20px; height: 30px; line-height: 30px; }
+
+.single-post .icons ul.social-icons{ color: #666; }
+
+.single-post .icons ul.social-icons > li > a{ padding-left: 15px; }
+
+.single-post .icons ul.social-icons > li > a > i{ margin-right: 10px; }
+
+.single-post .title{ margin: 20px 0 15px; }
+
+.single-post .date{ color: #999; }
+
+.single-post .desc{ margin: 30px 0; }
+	
+.single-post .quoto{ padding: 30px 40px; position: relative; }
+
+.single-post .quoto i{ margin-right: 10px; position: absolute; top: 10px; left: 10px; font-size: 1.4em; 
+	color: #FFAD4D; }
+
+
+/* POST AUTHOR */
+
+.blog-posts .post-author{ margin: 30px 0; margin-left: 20px; padding: 40px 30px; position: relative; 
+	box-shadow: 0px 5px 40px rgba(0,0,0,.2); }
+
+.post-author .author-image{ height: 120px; width: 120px; position: absolute; left: -20px; top: 50%; 
+	margin-top: -60px; border-radius: 2px; overflow: hidden; }
+
+.post-author .author-info{ margin-left: 100px; }
+
+.post-author .name{ margin-bottom: 15px; }
+
+.post-author .social-icons{ margin-top: 15px; color: #888; }
+
+.post-author .social-icons > li > a{ padding-right: 15px; }
+
+
+/* COMMENTS AREA */
+
+.comments-area{ margin: 50px 0; }
+
+.comments-area .author-image{ height: 70px; width: 70px; border-radius: 100px; overflow: hidden; float: left; }
+
+.comments-area .comment-info{ margin-left: 90px; }
+
+.comments-area .title{ margin-bottom: 30px; }
+
+.comments-area .comment{ margin-bottom: 30px; }
+
+.comments-area .date{ margin: 5px 0 15px; color: #888; }
+
+
+/* LEAVE COMMENT */
+
+.leave-comment-area{ margin: 50px 0; }
+
+.leave-comment-area .title{ margin-bottom: 30px; }
+
+.leave-comment input,
+.leave-comment textarea{ width: 100%; margin-bottom: 30px; border: 0; outline: 0; border-bottom: 1px solid #aaa; }
+
+.leave-comment input{ padding: 10px 0px; }
+
+.leave-comment textarea{ padding: 10px 0px; }
